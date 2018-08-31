@@ -1,0 +1,33 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "ABA Specila Ed Data Tracker",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/isaacalger/SpecialEdABC.git"
+  },
+  "keywords": [
+    "ABA",
+    "Spedial",
+    "Ed",
+    "ABC",
+    "Data"
+  ],
+  "author": "Isaac Alger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isaacalger/SpecialEdABC/issues"
+  },
+  "homepage": "https://github.com/isaacalger/SpecialEdABC#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.38.0"
+  }
+}
