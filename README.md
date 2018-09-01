@@ -9,6 +9,8 @@
 √    Create Database 
 √        populate with test data
 
+Create a gitignore file
+
     Create server endpoints
         auth
         student
