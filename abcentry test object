@@ -1,0 +1,44 @@
+    let entries = [
+        {
+            id: 1,
+            student: 'Boston',
+            teacher: 'Ms. Megan',
+            time: '10:32 AM',
+            date: '5/6/17', 
+            behavior:[
+                {
+                    id: 1,
+                    description: 'Student forces hand down throat',
+                },
+                {
+                    id: 2,
+                    description: 'Flops on ground',
+                },
+            ],
+
+            antecedent:[1,2],
+            consequence:[3,4],
+            location: 'classroom cubby'          
+        },
+        {
+            id: 2,
+            student: 'Izo',
+            teacher: 'Ms. Rylee',
+            time: '10:32 AM',
+            date: '5/6/17', 
+            behavior:[
+                {
+                    id: 1,
+                    description: 'Student bites arm',
+                },
+                {
+                    id: 2,
+                    description: 'Flops on ground',
+                },
+            ],
+
+            antecedent:[1,2],
+            consequence:[3,4],
+            location: 'classroom cubby'          
+        },
+    ];

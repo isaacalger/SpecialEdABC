@@ -1,0 +1,40 @@
+div.container
+  form
+    div.form-group.row
+      div.col-1
+        label.col-form-label(for='teacherName') Teacher:
+      div.col-3  
+        input(id='teacherName')(type='text')(placeholder='Name').form-control
+      div.col-1
+        label.col-form-label(for='location') Location:
+      div.col-3
+        select.custom-select(id='location')
+          option select one ...
+          option(value='1') Group 1
+          option(value='2') Group 2
+      div.col-2 
+        label.col-form-label Date: 9/9/18
+      div.col-2
+        label.col-form-label Time: 9:23 AM
+    div.row.data
+      div.col-4 
+        h5 Antecedent
+        div.form-check
+          input(type='checkbox')(id='ant1')
+          label(for='ant1') Precentation of task or demand
+        div.form-check
+          input(type='checkbox')(id='ant2')
+          label(for='ant2') Planned Transistion
+      div.col-4 
+        h5 Behavior
+        div.form-check
+          input(type='checkbox')(id='behavior1')
+          label(for='behavior1') Forces hand down throat
+      div.col-4 
+        h5 Consequence
+        div.form-check
+          input(type='checkbox')(id='concequence1')
+          label(for='concequence1') Prefered item given 
+      div.row
+        div.col-2.offset-md-8
+          button.btn.btn-primary(type='submit') submit
