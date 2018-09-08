@@ -3,13 +3,26 @@ extends layout
 block content
     .container
         .row
-            .col-12
-                form(method='POST', action='/add/student')
-                    .form-group
-                        label First Name:
-                        input.form-control(name='first_name' autofocus)
-                    .form-group
-                        label Last Name:
-                        input.form-control(name='last_name')
-                    input.btn.btn-primary(type='submit', value='Submit')
+            form.form-inline(method='POST', action='/add/student')
+                .form-group.mb-2
+                    label First Name:
+                    input.form-control(name='first_name' autofocus)
+                .form-group.mx-sm-3.mb-2
+                    label Last Name:
+                    input.form-control(name='last_name')
+                input.btn.btn-primary.mb-2(type='submit', value='Submit')
+        .row
+            table.table.table-striped
+                thead
+                    tr
+                        th 
+                        th Firstname
+                        th Lastname
+                tbody
+                    each student, i in students
+                        tr
+                            td
+                                a(shref='/delete/student/'+student.id) delete
+                            td=student.first_name
+                            td=student.last_name
 

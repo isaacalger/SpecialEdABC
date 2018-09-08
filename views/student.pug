@@ -1,4 +1,30 @@
 extends layout
 
 block content
-    p Did this work
+    .row
+        .col-12
+            if student.ABC_Entries[0]
+                ul.list-group
+                    each abc_entry, i in student.ABC_Entries
+                        li.list-group-item
+                            h3=abc_entry.id
+                            .row
+                                .col-4
+                                    div Teacher: #{teacher}
+                                .col-2
+                                    div Date: #{date}
+                                .col-2
+                                    div Time: #{time}
+                                .col-4
+                                    div Location: #{location}
+                            .row
+                                .col-4
+                                    h5 Anticedent -
+                                .col-4
+                                    h5 Behavior -
+                                .col-4
+                                    h5 Consequense -
+            else
+                h3 No ABC Entries were found
+
+                        

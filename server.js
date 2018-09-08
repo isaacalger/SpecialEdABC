@@ -8,6 +8,7 @@ const ABC_Entry = require('./models').ABC_Entry;
 const Antecedent = require('./models').Antecedent;
 const Behavior = require('./models').Behavior;
 const Consequence = require('./models').Consequence;
+const User = require('./models').User;
 
 //Init app
 const app = express();
@@ -22,8 +23,15 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-
 /*
+User.create({
+    username: 'Iaxx',
+    password: 'abc123',
+    first_name: 'Dan',
+    last_name: 'Williams',
+    display_name: 'Mr. Williams'
+});
+
 ABC_Entry.create({
     StudentId: 1,
     anticedent: [1,2],
@@ -33,7 +41,6 @@ ABC_Entry.create({
         description: 'Student forces hand down throat.'
     })
 })
-
 
 Student.findAll({
     include: [ABC_Entry]
@@ -63,9 +70,14 @@ app.get('/edit', (req, res) => {
 
 // Students
     app.get('/edit/students', (req, res) => {
-        res.render('edit_students', {
-            title: 'Modify Students'
-        });       
+        Student.findAll()
+        .then( students => {
+            res.render('edit_students', {
+                title: 'Modify Students',
+                students: students
+            });  
+        })
+     
     });
 
     app.post('/add/student', (req, res) => {
@@ -74,10 +86,35 @@ app.get('/edit', (req, res) => {
             .then(() => res.redirect('/edit/students'));
     });
 
-// ABC_Entry
+// Student ABC_Entry
+    app.get('/student/:student_id', (req, res) => {
+        Student.findById(req.params.student_id, {
+            include: [ABC_Entry]
+        }).then(student => {
+            let fullname = student.first_name + ' ' + student.last_name;
+            console.log(student)
+            res.render('student', {
+                title: fullname,
+                student: student,
+                teacher: "Ms. Megan",
+            });  
+        });
+    });
+
     app.post('/add/abc_entry/:student_id', (req, res) => {
-        ABC_Entry.create(req.body)
-            .then(() => res.redirect(''))
+        let student_id = req.params.student_id;
+        ABC_Entry.create({...req.body, StudentId: student_id})
+            .then(() => res.redirect('/student/' + student_id));
+    });
+
+    app.get('/delete/student/:student_id', (req, res) => {
+        ABC_Entry.destroy({
+            where: {StudentId: req.params.student_id}
+        }).then(
+            Student.destroy({
+                where: {id: req.params.student_id}
+            }).then(() => res.redirect('/edit/students'))
+        );
     });
 
 // Antecedents
