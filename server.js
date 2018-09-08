@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 
 //Models
 const Student = require('./models').Student;
+const ABC_Entry = require('./models').ABC_Entry;
 const Antecedent = require('./models').Antecedent;
+const Behavior = require('./models').Behavior;
 const Consequence = require('./models').Consequence;
 
 //Init app
@@ -20,10 +22,31 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+
+/*
+ABC_Entry.create({
+    StudentId: 1,
+    anticedent: [1,2],
+    consequence: [2,3],
+}).then(abc_entry => {
+    abc_entry.createBehavior({
+        description: 'Student forces hand down throat.'
+    })
+})
+
+
+Student.findAll({
+    include: [ABC_Entry]
+}).then(students => {
+    console.log(students[0].ABC_Entries);
+});
+*/
+
 //Home Route
 app.get('/', (req, res) => {
-    Student.findAll().then(students => {
-      console.log(students);
+    Student.findAll({
+        include: [ABC_Entry]
+    }).then(students => {
       res.render('index', {
           title:'ABC Data Tracker',
           students: students
@@ -45,9 +68,16 @@ app.get('/edit', (req, res) => {
         });       
     });
 
-    app.post('/student/add', (req, res) => {
+    app.post('/add/student', (req, res) => {
+        console.log('adding student');
         Student.create(req.body)
             .then(() => res.redirect('/edit/students'));
+    });
+
+// ABC_Entry
+    app.post('/add/abc_entry/:student_id', (req, res) => {
+        ABC_Entry.create(req.body)
+            .then(() => res.redirect(''))
     });
 
 // Antecedents
@@ -57,23 +87,22 @@ app.get('/edit', (req, res) => {
         });  
     });
 
-    app.post('/antecedent/add', (req, res) => {
+    app.post('/add/antecedent', (req, res) => {
         Antecedent.create(req.body)
             .then(() => res.redirect('/edit/antecedents'));
     });
 
-/* Behaviors
+// Behaviors
     app.get('/edit/behaviors', (req, res) => {
         res.render('edit_behaviors', {
             title:'ABC Data Form'
         });
     });
 
-    app.post('/behavior/add', (req, res) => {
+    app.post('/add/behavior', (req, res) => {
         Antecedent.create(req.body)
             .then(() => res.redirect('/edit/behavior'));
     });
-*/
 
 // Consequences
     app.get('/edit/consequences', (req, res) => {
@@ -82,7 +111,7 @@ app.get('/edit', (req, res) => {
         });
     });
 
-    app.post('/consequence/add', (req, res) => {
+    app.post('add/consequence', (req, res) => {
         Consequence.create(req.body)
             .then(() => res.redirect('/edit/consequences'));
     });

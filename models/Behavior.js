@@ -1,10 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const behavior = sequelize.define('Behavior', {
+  const Behavior = sequelize.define('Behavior', {
     description: DataTypes.STRING
   }, {});
-  behavior.associate = function(models) {
-    // associations can be defined here
+
+  Behavior.associate = function(models) {    
+    Behavior.belongsTo(models.ABC_Entry);
   };
-  return behavior;
+
+  return Behavior;
 };

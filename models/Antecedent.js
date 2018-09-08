@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const antecedent = sequelize.define('Antecedent', {
+  const Antecedent = sequelize.define('Antecedent', {
     description: DataTypes.STRING
   }, {});
-  antecedent.associate = function(models) {
+  Antecedent.associate = function(models) {
     // associations can be defined here
   };
-  return antecedent;
+  return Antecedent;
 };

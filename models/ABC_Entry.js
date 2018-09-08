@@ -1,10 +1,16 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
+
   const ABC_Entry = sequelize.define('ABC_Entry', {
-    student_id: DataTypes.INTEGER
+    StudentId: DataTypes.INTEGER,
+    anticedent: DataTypes.ARRAY(DataTypes.INTEGER),
+    consequence: DataTypes.ARRAY(DataTypes.INTEGER)
   }, {});
+
   ABC_Entry.associate = function(models) {
-    // associations can be defined here
+    ABC_Entry.belongsTo(models.Student);
+    ABC_Entry.hasMany(models.Behavior);
   };
+
   return ABC_Entry;
 };
