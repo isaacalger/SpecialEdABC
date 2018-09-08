@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    div.container
+        div.row
+            div.col-6
+                form(method='POST', action='/behavior/add')
+                    h4 Add Behavior
+                    #form-group
+                        label Description:
+                        input.form-control(name='description' autofocus)
+                    input.btn.btn-primary(type='submit', value='Submit')
+

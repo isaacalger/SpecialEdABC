@@ -1,12 +1,32 @@
 doctype html
 html
     head
-        title ABC DataTracker
+      title ABC DataTracker
+      link(rel='stylesheet' href='/bootstrap/css/bootstrap.css')
     body
-        header
-            h1 #{title}
+      .container
+        nav.navbar.navbar-expand-md.navbar-dark.bg-dark
+          a.navbar-brand(href='/') #{title}
+          button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarsExampleDefault', aria-controls='navbarsExampleDefault', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+          #navbarsExampleDefault.collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+              li.nav-item
+                a.nav-link(href='/')
+                  | Home 
+                  span.sr-only (current)
+              li.nav-item
+                a.nav-link(href='/edit') Edit Records
+              li.nav-item.dropdown
+                a#dropdown01.nav-link.dropdown-toggle(href='https://example.com', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false') Dropdown
+                .dropdown-menu(aria-labelledby='dropdown01')
+                  a.dropdown-item(href='#') Action
+                  a.dropdown-item(href='#') Another action
+                  a.dropdown-item(href='#') Something else here
         block content
-        br
         hr
-        footer
-            p Copyright &copy 2018
+        footer.page-footer
+          p Copyright &copy 2018
+        script(src='/jquery/jquery.js')
+        script(src='/bootstrap/js/bootstrap.js')
+              

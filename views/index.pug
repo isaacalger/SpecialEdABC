@@ -1,6 +1,12 @@
 extends layout
 
 block content
-    ul
-        each entry, i in entries
-            li=entry.student 
+    div.row
+        div.col-6
+            ul.list-group
+                each student, i in students
+                    li.list-group-item
+                      a(href='/student/' + student.id)=student.first_name
+                        
+        div.col-6
+            p here are the students
